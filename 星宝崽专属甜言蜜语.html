@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⭐ 星宝崽专属甜言蜜语 ✨</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 420px;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: slideDown 0.8s ease;
+        }
+
+        .header h1 {
+            color: #fff;
+            font-size: 32px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            font-weight: bold;
+            background: linear-gradient(135deg, #fff 0%, #ffd1ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
+            margin-top: 8px;
+            letter-spacing: 2px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .card::before {
+            content: '⭐';
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            font-size: 120px;
+            opacity: 0.08;
+            transform: rotate(-15deg);
+        }
+
+        .fortune-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 240, 245, 0.95) 100%);
+        }
+
+        .fortune-cover {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .fortune-cover:hover {
+            transform: scale(1.02);
+        }
+
+        .fortune-icon-large {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        .fortune-click-hint {
+            color: #667eea;
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: 15px;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #f8f9ff 0%, #fff5f8 100%);
+            border-radius: 25px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .fortune-content {
+            display: none;
+        }
+
+        .fortune-content.show {
+            display: block;
+            animation: fadeIn 0.6s ease;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .section-title {
+            color: #667eea;
+            font-size: 18px;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+        }
+
+        .love-text {
+            font-size: 22px;
+            line-height: 1.7;
+            color: #2d3748;
+            text-align: center;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            background: linear-gradient(135deg, #f8f9ff 0%, #fff5f8 100%);
+            border-radius: 16px;
+            font-weight: 500;
+            animation: fadeIn 0.6s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(1) rotate(0deg);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.2) rotate(180deg);
+            }
+        }
+
+        .fortune-grid {
+            display: grid;
+            gap: 12px;
+        }
+
+        .fortune-item {
+            background: linear-gradient(135deg, #fff 0%, #f8f9ff 100%);
+            padding: 14px 18px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .fortune-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+        }
+
+        .fortune-icon {
+            font-size: 24px;
+            flex-shrink: 0;
+            animation: sparkle 3s infinite ease-in-out;
+        }
+
+        .fortune-item:nth-child(2) .fortune-icon {
+            animation-delay: 0.5s;
+        }
+
+        .fortune-item:nth-child(3) .fortune-icon {
+            animation-delay: 1s;
+        }
+
+        .fortune-item:nth-child(4) .fortune-icon {
+            animation-delay: 1.5s;
+        }
+
+        .fortune-item:nth-child(5) .fortune-icon {
+            animation-delay: 2s;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            color: white;
+            border: none;
+            padding: 16px 45px;
+            border-radius: 50px;
+            font-size: 18px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 22px;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.5);
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
+        }
+
+        .category-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 13px;
+            background: linear-gradient(135deg, #f8f9ff 0%, #fff5f8 100%);
+            color: #667eea;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            font-weight: 500;
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .tab:hover:not(.active) {
+            border-color: #667eea;
+            transform: scale(1.05);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 25px;
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 13px;
+            font-weight: 500;
+            animation: slideDown 0.8s ease 0.3s backwards;
+        }
+
+        .footer .signature {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .decorations {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .decoration {
+            position: absolute;
+            font-size: 35px;
+            opacity: 0.4;
+            animation: float 8s infinite ease-in-out;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg) scale(1);
+            }
+            25% {
+                transform: translateY(-25px) rotate(10deg) scale(1.1);
+            }
+            50% {
+                transform: translateY(-10px) rotate(-5deg) scale(1);
+            }
+            75% {
+                transform: translateY(-30px) rotate(5deg) scale(1.05);
+            }
+        }
+
+        .star-trail {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            background: radial-gradient(circle, #fff 0%, #ffd1ff 100%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 2;
+            box-shadow: 0 0 10px #fff, 0 0 20px #ffd1ff;
+            animation: trail-fade 1s ease-out forwards;
+        }
+
+        @keyframes trail-fade {
+            from {
+                opacity: 1;
+                transform: scale(1);
+            }
+            to {
+                opacity: 0;
+                transform: scale(0);
+            }
+        }
+
+        .special-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #8b4513;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: bold;
+            box-shadow: 0 2px 10px rgba(255, 215, 0, 0.4);
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        .counter {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 12px;
+            margin-top: 10px;
+        }
+
+        .counter span {
+            color: #ffd1ff;
+            font-weight: bold;
+        }
+
+        .date-display {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 12px;
+            margin-top: 12px;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            display: inline-block;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .date-display span {
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="decorations" id="decorations"></div>
+    
+    <div class="container">
+        <div class="header">
+            <h1>⭐ 星宝崽专属甜言蜜语 ✨</h1>
+            <div class="subtitle">每天都要被宝贝宠坏呀～</div>
+        </div>
+
+        <!-- 甜言蜜语卡片 -->
+        <div class="card">
+            <div class="special-badge">星宝崽限定</div>
+            <div class="section-title">
+                <span>💖</span>
+                <span>今日专属情话</span>
+            </div>
+            
+            <div class="category-tabs" id="categoryTabs"></div>
+            
+            <div class="love-text" id="loveText">
+                今天也要给星宝崽说好多好多甜言蜜语～
+            </div>
+
+            <button class="btn" onclick="getRandomLove()" id="refreshBtn">
+                ✨ 换一句 ✨
+            </button>
+            
+            <div class="counter">
+                已经为你准备了 <span id="totalCount">0</span> 句情话
+            </div>
+            
+            <div class="date-display">
+                <span id="currentDate"></span> | <span id="dailyMessage"></span>
+            </div>
+        </div>
+
+        <!-- 今日运势卡片 -->
+        <div class="card fortune-card">
+            <div class="fortune-cover" id="fortuneCover" onclick="revealFortune()">
+                <div class="fortune-icon-large">🔮</div>
+                <div style="color: #667eea; font-size: 16px; font-weight: 600; margin-bottom: 10px;">今日运势</div>
+                <div class="fortune-click-hint">✨ 点击查看星宝崽今日运势 ✨</div>
+            </div>
+            
+            <div class="fortune-content" id="fortuneContent">
+                <div class="section-title">
+                    <span>🌟</span>
+                    <span>星宝崽今日运势</span>
+                </div>
+                
+                <div class="fortune-grid" id="fortuneGrid">
+                    <!-- 运势内容动态加载 -->
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="signature">
+                💫 专属制作给最可爱的星宝崽 💫
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 星宝崽专属情话库（每个分类20句，每天随机展示精选内容）
+        const loveMessages = {
+            '全部': [
+                "星宝崽，你今天比星星还亮，比月亮还美✨",
+                "整个银河系都抵不过你的一笑呀～",
+                "宝贝，你是地球上最最最可爱的崽！",
+                "今天也是被星宝崽可爱到心动的一天～",
+                "有你在我身边，每天都像在星际旅行🚀",
+                "星宝崽的眼里装着整个宇宙呢～",
+                "不管去哪里，我的导航终点都是星宝崽💕",
+                "你是我宇宙中唯一的恒星，照亮我的一切",
+                "今天要给星宝崽打一万分，不能再多了！",
+                "宝贝，你就是我心里的那颗星～",
+                "星宝崽是世界上最好的宝贝，不接受反驳！",
+                "每次看到星宝崽，我的心就砰砰跳～",
+                "你笑起来的时候，连星星都要暗淡了呢",
+                "星宝崽是我见过最美好的存在✨",
+                "想把你捧在手心里，像捧着最珍贵的星星",
+                "星宝崽，你的可爱程度已经突破天际了！",
+                "宝贝，你就是上天赐给我最好的礼物🎁",
+                "看到星宝崽，所有的烦恼都消失啦～",
+                "你的眼睛里有整个银河，我愿为你摘星",
+                "星宝崽，你是我生命中最美的意外💖"
+            ],
+            '日常夸夸': [
+                "星宝崽今天也太棒了吧！给你鼓掌👏",
+                "宝贝做什么都很厉害呢，骄傲脸～",
+                "星宝崽简直是全能小天才！",
+                "今天被星宝崽惊艳到了，太优秀啦！",
+                "我的宝贝是最棒最棒的小星星⭐",
+                "星宝崽的努力都看得见，超厉害的！",
+                "宝贝今天表现满分！奖励抱抱～",
+                "星宝崽太优秀了，我要给你写表扬信",
+                "有你这样的宝贝，我真是太幸运了",
+                "星宝崽真的什么都会，太厉害啦！",
+                "宝贝今天的穿搭也太好看了吧✨",
+                "星宝崽的情商超高，我好佩服～",
+                "每次看到星宝崽进步，我都超级开心",
+                "宝贝你是最棒的，要永远自信哦！",
+                "星宝崽做事认真，真的好可爱～",
+                "你的努力都会变成星星，照亮前程⭐",
+                "宝贝就是闪闪发光的存在，不接受反驳",
+                "星宝崽这么优秀，我为你感到骄傲",
+                "你的每一个优点都让我心动不已💕",
+                "宝贝继续加油，你是最棒的崽！"
+            ],
+            '睡前情话': [
+                "晚安呀星宝崽，梦里也要记得我想你💤",
+                "盖好小被子，明天醒来第一个见到的必须是我",
+                "星宝崽要乖乖睡觉哦，我在梦里等你～",
+                "今天的最后一句晚安，只说给我的宝贝听",
+                "睡吧睡吧，我的小星星，梦里见🌙",
+                "不管睡多久，醒来都要想我哦～",
+                "星宝崽晚安，祝你做个甜甜的梦✨",
+                "明天见啦，我最爱的小宝贝",
+                "今晚的月亮和星星都会替我想你的",
+                "宝贝晚安，明天见的时候我会想你的",
+                "晚安星宝崽，你是我梦里的女主角🌟",
+                "闭上眼睛，我们梦里继续相爱💕",
+                "宝贝睡吧，我会守护你的梦境",
+                "星宝崽晚安，愿你的梦里有彩虹",
+                "睡个好觉，明天醒来又是元气满满的一天",
+                "宝贝你睡着的样子一定超可爱～",
+                "晚安我的小星星，明天见✨",
+                "月光会替我亲吻你的额头🌙",
+                "星宝崽乖乖睡觉，不许想别人哦",
+                "最后一个念头是你，第一个梦也是你💖"
+            ],
+            '道歉专用': [
+                "对不起嘛星宝崽，我错了🥺",
+                "别生气了好不好，你生气的样子我心疼",
+                "星宝崽原谅我好不好？给你买奶茶～",
+                "我承认我错了，星宝崽大人有大量",
+                "宝贝别不理我，我会伤心的💔",
+                "对不起对不起，我再也不敢了",
+                "星宝崽消消气，我给你唱首歌好不好？",
+                "我知道错了，宝贝打我一下出出气",
+                "星宝崽最好了，原谅我这一次吧～",
+                "宝贝我错了，以后都听你的",
+                "星宝崽别生气了，我给你买好吃的",
+                "对不起，是我不好，你不理我我会很难过",
+                "宝贝原谅我嘛，我发誓以后注意",
+                "星宝崽我知道错了，你别不开心",
+                "我的错我的错，宝贝想怎么罚我都行",
+                "对不起星宝崽，让你不开心了💕",
+                "宝贝别生气啦，我给你捏肩捶背",
+                "我知道错了，星宝崽最善良了对不对",
+                "对不起嘛，我下次一定注意",
+                "星宝崽原谅我吧，我给你买蛋糕🍰"
+            ],
+            '节日祝福': [
+                "星宝崽节日快乐！有你在每天都像过节🎉",
+                "情人节快乐！我的宝贝就是最好的礼物💕",
+                "星宝崽生日快乐！要天天开心哦～",
+                "宝贝新年快乐！今年也要宠坏你呀✨",
+                "圣诞节快乐星宝崽！你就是我的圣诞老人",
+                "星宝崽快乐！你是上天给我的礼物",
+                "宝贝万圣节快乐！你是最可爱的小女巫",
+                "母亲节快乐！谢谢你做我生命中的小天使",
+                "星宝崽儿童节快乐！永远做我的小宝贝",
+                "每个节日都因为有星宝崽而特别",
+                "宝贝节日快乐，今天你是主角🌟",
+                "星宝崽，你就是我最想收到的礼物",
+                "节日快乐！有你在身边每天都甜蜜",
+                "宝贝新年新气象，继续闪闪发光✨",
+                "星宝崽情人节快乐，爱你💕",
+                "宝贝生日快乐，愿你永远快乐",
+                "星宝崽，每个节日都想和你一起过",
+                "节日快乐宝贝，你是最珍贵的存在",
+                "宝贝感恩节快乐，谢谢你来到我的世界",
+                "星宝崽，有你的节日才叫节日🎊"
+            ],
+            '专属情话': [
+                "星宝崽是我宇宙中唯一的星球🌟",
+                "这辈子最幸运的事就是遇见星宝崽",
+                "不管发生什么，我都会一直陪在星宝崽身边",
+                "你就是我想要的全部，星宝崽",
+                "星宝崽是我永远都不会腻的宝贝",
+                "有星宝崽在，哪里都是家",
+                "我的世界因为有你才完整💕",
+                "星宝崽，你是我生命中最美的意外",
+                "不管多久，我对星宝崽的爱都不会变",
+                "宝贝，你就是我的一切✨",
+                "星宝崽，我愿意陪你走完这一生",
+                "你是我心中最柔软的地方💗",
+                "星宝崽，爱你这件事，我会坚持一辈子",
+                "有你的日子，每一秒都值得珍藏",
+                "星宝崽，你就是我的全世界🌍",
+                "我只想把最好的都给你，星宝崽",
+                "宝贝，你的幸福就是我的幸福",
+                "星宝崽，遇到你让我相信了命运",
+                "你是我生命中最美的风景🌸",
+                "星宝崽，我会永远守护你"
+            ]
+        };
+
+        // 星宝崽专属运势库（每天随机展示不同的运势）
+        const fortuneLibrary = [
+            {
+                '爱情运': '超级旺！星宝崽魅力爆棚，桃花朵朵开🌸',
+                '今日宜': '适合撒娇、求抱抱、收礼物、吃甜食',
+                '今日忌': '熬夜、生气、不开心、不理星宝崽',
+                '幸运色': '星空紫、银河蓝、星星金、粉色',
+                '幸运数字': '7、17、27（星宝崽的幸运数字）',
+                '幸运物': '星星项链、粉色手机壳、奶茶'
+            },
+            {
+                '爱情运': '甜蜜指数爆表！今天和星宝崽一起会超开心💕',
+                '今日宜': '约会、看电影、吃火锅、说情话',
+                '今日忌': '独自一人、错过电话、不理宝贝',
+                '幸运色': '梦幻粉、浅蓝、薄荷绿',
+                '幸运数字': '3、13、23',
+                '幸运物': '玩偶、巧克力、爱心形状的物品'
+            },
+            {
+                '爱情运': '缘分天注定！今天会有美好的事情发生✨',
+                '今日宜': '表白、送花、写信、散步',
+                '今日忌': '犹豫、错过机会、放弃',
+                '幸运色': '彩虹色、橙红色、黄色',
+                '幸运数字': '9、19、29',
+                '幸运物': '彩虹笔、鲜花、香水'
+            },
+            {
+                '爱情运': '浪漫指数满分！今天适合表达爱意💗',
+                '今日宜': '约会、拥抱、牵手、说"我爱你"',
+                '今日忌': '害羞、隐藏感情、错过时机',
+                '幸运色': '玫瑰红、深紫、金色',
+                '幸运数字': '1、11、21',
+                '幸运物': '玫瑰、爱心蛋糕、情书'
+            },
+            {
+                '爱情运': '温馨甜蜜！今天和星宝崽在一起最幸福🌟',
+                '今日宜': '宅家、看电影、做饭、聊天',
+                '今日忌': '加班、忽视对方、冷战',
+                '幸运色': '米白色、浅灰、淡蓝',
+                '幸运数字': '6、16、26',
+                '幸运物': '毛毯、热茶、相册'
+            },
+            {
+                '爱情运': '惊喜不断！今天会有小确降临💕',
+                '今日宜': '准备惊喜、送礼物、写便签',
+                '今日忌': '平平淡过、没有仪式感',
+                '幸运色': '亮银色、宝蓝色、珍珠白',
+                '幸运数字': '4、14、24',
+                '幸运物': '小礼物、便签纸、珍珠饰品'
+            },
+            {
+                '爱情运': '缘分满满！今天适合创造美好回忆🌸',
+                '今日宜': '拍照、旅行、尝试新事物',
+                '今日忌': '宅在家里、错过美好时光',
+                '幸运色': '春绿色、天蓝色、淡粉色',
+                '幸运数字': '8、18、28',
+                '幸运物': '相机、旅行攻略、纪念册'
+            },
+            {
+                '爱情运': '温暖治愈！星宝崽的微笑能治愈一切💖',
+                '今日宜': '聊天、安慰、陪伴、分享',
+                '今日忌': '争吵、冷战、不关心',
+                '幸运色': '暖橙色、浅黄色、米色',
+                '幸运数字': '2、12、22',
+                '幸运物': '暖手宝、咖啡、拥抱'
+            },
+            {
+                '爱情运': '心动时刻！今天会有浪漫的邂逅✨',
+                '今日宜': '打扮自己、出门社交、主动出击',
+                '今日忌': '宅家、被动等待、错过机会',
+                '幸运色': '亮粉色、银色、亮片色',
+                '幸运数字': '5、15、25',
+                '幸运物': '新衣服、香水、口红'
+            },
+            {
+                '爱情运': '甜蜜暴击！今天会被爱包围🌟',
+                '今日宜': '接受爱意、表达感谢、享受当下',
+                '今日忌': '拒绝、质疑、不珍惜',
+                '幸运色': '糖果色、彩虹色、多彩',
+                '幸运数字': '10、20、30',
+                '幸运物': '糖果、气球、彩带'
+            }
+        ];
+
+        const fortuneIcons = {
+            '爱情运': '💕',
+            '今日宜': '✨',
+            '今日忌': '❌',
+            '幸运色': '🎨',
+            '幸运数字': '🔢',
+            '幸运物': '🍀'
+        };
+
+        let currentCategory = '全部';
+        let clickCount = 0;
+
+        // 初始化装饰元素
+        function initDecorations() {
+            const decorations = document.getElementById('decorations');
+            const emojis = ['⭐', '✨', '💫', '🌟', '💕', '🎀', '🌸', '💗', '💖', '✨'];
+            for (let i = 0; i < 20; i++) {
+                const el = document.createElement('div');
+                el.className = 'decoration';
+                el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                el.style.left = Math.random() * 100 + '%';
+                el.style.top = Math.random() * 100 + '%';
+                el.style.animationDelay = Math.random() * 4 + 's';
+                el.style.animationDuration = (6 + Math.random() * 4) + 's';
+                decorations.appendChild(el);
+            }
+        }
+
+        // 星星轨迹效果
+        function createStarTrail(x, y) {
+            const star = document.createElement('div');
+            star.className = 'star-trail';
+            star.style.left = x + 'px';
+            star.style.top = y + 'px';
+            document.body.appendChild(star);
+            
+            setTimeout(() => {
+                star.remove();
+            }, 1000);
+        }
+
+        // 鼠标移动时产生星星轨迹
+        document.addEventListener('mousemove', (e) => {
+            if (Math.random() > 0.9) {
+                createStarTrail(e.clientX, e.clientY);
+            }
+        });
+
+        // 初始化分类标签
+        function initCategoryTabs() {
+            const categories = Object.keys(loveMessages);
+            const tabsContainer = document.getElementById('categoryTabs');
+            
+            categories.forEach(cat => {
+                const tab = document.createElement('div');
+                tab.className = `tab ${cat === '全部' ? 'active' : ''}`;
+                tab.textContent = cat;
+                tab.onclick = () => switchCategory(cat, tab);
+                tabsContainer.appendChild(tab);
+            });
+
+            // 更新总数量
+            const totalMessages = Object.values(loveMessages).flat().length;
+            document.getElementById('totalCount').textContent = totalMessages;
+        }
+
+        // 切换分类
+        function switchCategory(category, tabElement) {
+            currentCategory = category;
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            tabElement.classList.add('active');
+            getRandomLove();
+        }
+
+        // 获取随机情话（根据日期每天随机展示精选内容）
+        function getRandomLove() {
+            const messages = loveMessages[currentCategory];
+            
+            // 根据当前时间和点击次数生成随机种子
+            const now = new Date();
+            const timeSeed = now.getTime();
+            const clickSeed = clickCount * 13; // 乘以13增加随机性
+            const seed = timeSeed + clickSeed;
+            
+            // 使用简单的伪随机算法
+            const randomIndex = Math.floor(Math.abs(Math.sin(seed)) * messages.length);
+            const random = messages[randomIndex];
+            
+            const loveText = document.getElementById('loveText');
+            loveText.style.animation = 'none';
+            loveText.offsetHeight;
+            loveText.style.animation = 'fadeIn 0.6s ease';
+            loveText.textContent = random;
+
+            // 增加点击计数
+            clickCount++;
+            
+            // 按钮动画反馈
+            const btn = document.getElementById('refreshBtn');
+            btn.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                btn.style.transform = 'scale(1)';
+            }, 150);
+        }
+
+        // 加载运势（根据日期每天随机展示不同的运势）
+        function loadFortune() {
+            // 根据日期获取种子，确保每天显示不同的运势
+            const today = new Date();
+            const dateStr = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+            const seed = dateStr.split('').reduce((a, b) => a + b.charCodeAt(0), 0);
+            const fortuneIndex = seed % fortuneLibrary.length;
+            const todayFortune = fortuneLibrary[fortuneIndex];
+            
+            const grid = document.getElementById('fortuneGrid');
+            grid.innerHTML = ''; // 清空现有内容
+            
+            Object.entries(todayFortune).forEach(([type, content], index) => {
+                const item = document.createElement('div');
+                item.className = 'fortune-item';
+                item.style.animationDelay = `${index * 0.1}s`;
+                const icon = fortuneIcons[type] || '✨';
+                item.innerHTML = `
+                    <span class="fortune-icon">${icon}</span>
+                    <span><strong>${type}：</strong>${content}</span>
+                `;
+                grid.appendChild(item);
+            });
+        }
+
+        // 揭示运势
+        function revealFortune() {
+            const cover = document.getElementById('fortuneCover');
+            const content = document.getElementById('fortuneContent');
+            
+            // 隐藏封面，显示内容
+            cover.style.display = 'none';
+            content.classList.add('show');
+            
+            // 加载运势内容
+            loadFortune();
+            
+            // 添加一些魔法效果
+            createMagicEffect();
+        }
+
+        // 创建魔法效果
+        function createMagicEffect() {
+            const fortuneCard = document.querySelector('.fortune-card');
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const sparkle = document.createElement('div');
+                    sparkle.textContent = '✨';
+                    sparkle.style.position = 'absolute';
+                    sparkle.style.left = Math.random() * 100 + '%';
+                    sparkle.style.top = Math.random() * 100 + '%';
+                    sparkle.style.fontSize = '20px';
+                    sparkle.style.opacity = '0';
+                    sparkle.style.transform = 'scale(0)';
+                    sparkle.style.transition = 'all 0.6s ease';
+                    sparkle.style.zIndex = '100';
+                    fortuneCard.appendChild(sparkle);
+                    
+                    setTimeout(() => {
+                        sparkle.style.opacity = '1';
+                        sparkle.style.transform = 'scale(1.5)';
+                    }, 50);
+                    
+                    setTimeout(() => {
+                        sparkle.style.opacity = '0';
+                        sparkle.style.transform = 'scale(0) translateY(-30px)';
+                    }, 500);
+                    
+                    setTimeout(() => {
+                        sparkle.remove();
+                    }, 1100);
+                }, i * 50);
+            }
+        }
+
+        // 初始化
+        window.onload = function() {
+            initDecorations();
+            initCategoryTabs();
+            // 不再自动加载运势，等待用户点击
+            getRandomLove();
+            updateDateDisplay();
+            
+            // 欢迎提示
+            console.log('%c⭐ 欢迎来到星宝崽专属甜言蜜语 ⭐', 'font-size: 20px; color: #667eea; font-weight: bold;');
+            console.log('%c制作：星宝崽专属小助手 💕', 'font-size: 14px; color: #f093fb;');
+        };
+
+        // 更新日期显示
+        function updateDateDisplay() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const weekDays = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+            const weekDay = weekDays[now.getDay()];
+            
+            document.getElementById('currentDate').textContent = `${year}年${month}月${day}日 ${weekDay}`;
+            
+            // 根据星期几显示不同的每日寄语
+            const dailyMessages = [
+                '新的一周，星宝崽要元气满满哦～',
+                '周二继续加油，你是最棒的！',
+                '周三过半，胜利在望✨',
+                '周四啦，马上就是周末啦！',
+                '周五快乐！星宝崽最开心的一天～',
+                '周六放松日，好好享受生活💕',
+                '周日休息日，记得照顾好自己哦'
+            ];
+            document.getElementById('dailyMessage').textContent = dailyMessages[now.getDay()];
+        }
+    </script>
+</body>
+</html>
