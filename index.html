@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💕 每日甜言蜜语</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #FFE6EB 0%, #FFB6C1 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #FF6B9D;
+            font-size: 28px;
+            text-shadow: 2px 2px 4px rgba(255, 107, 157, 0.3);
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '💕';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 80px;
+            opacity: 0.1;
+        }
+
+        .fortune-card {
+            background: linear-gradient(135deg, #FFF5F7 0%, #FFE4E9 100%);
+        }
+
+        .section-title {
+            color: #FF6B9D;
+            font-size: 18px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .love-text {
+            font-size: 20px;
+            line-height: 1.6;
+            color: #333;
+            text-align: center;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fortune-grid {
+            display: grid;
+            gap: 12px;
+        }
+
+        .fortune-item {
+            background: white;
+            padding: 12px 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+
+        .fortune-icon {
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #FF6B9D 0%, #FF8FB3 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 18px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            box-shadow: 0 5px 20px rgba(255, 107, 157, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.5);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .category-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            background: #FFF0F3;
+            color: #FF6B9D;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .tab.active {
+            background: #FF6B9D;
+            color: white;
+        }
+
+        .tab:hover {
+            border-color: #FF6B9D;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #FF6B9D;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .decorations {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .decoration {
+            position: absolute;
+            font-size: 30px;
+            opacity: 0.3;
+            animation: float 6s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="decorations" id="decorations"></div>
+    
+    <div class="container">
+        <div class="header">
+            <h1>💕 每日甜言蜜语</h1>
+        </div>
+
+        <!-- 甜言蜜语卡片 -->
+        <div class="card">
+            <div class="section-title">
+                <span>💌</span>
+                <span>今日情话</span>
+            </div>
+            
+            <div class="category-tabs" id="categoryTabs"></div>
+            
+            <div class="love-text" id="loveText">
+                点击按钮获取今日份甜蜜～
+            </div>
+
+            <button class="btn" onclick="getRandomLove()">
+                💖 换一句
+            </button>
+        </div>
+
+        <!-- 今日运势卡片 -->
+        <div class="card fortune-card">
+            <div class="section-title">
+                <span>🔮</span>
+                <span>今日运势</span>
+            </div>
+            
+            <div class="fortune-grid" id="fortuneGrid">
+                <!-- 运势内容动态加载 -->
+            </div>
+        </div>
+
+        <div class="footer">
+            Made with 💕 for you
+        </div>
+    </div>
+
+    <script>
+        // 飞书多维表格配置
+        const APP_TOKEN = 'QYf4boflBarDT6sZOppcUEqbn5b';
+        const LOVE_TABLE_ID = 'tbl1fa4qAjsEEJ3G';
+        const FORTUNE_TABLE_ID = 'tblRAXKhMQIS2CRY';
+
+        // 本地数据存储（避免每次都调用 API）
+        let loveData = [];
+        let fortuneData = [];
+        let currentCategory = '全部';
+
+        // 初始化装饰元素
+        function initDecorations() {
+            const decorations = document.getElementById('decorations');
+            const emojis = ['💕', '💖', '💗', '✨', '🌸', '⭐'];
+            for (let i = 0; i < 15; i++) {
+                const el = document.createElement('div');
+                el.className = 'decoration';
+                el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                el.style.left = Math.random() * 100 + '%';
+                el.style.top = Math.random() * 100 + '%';
+                el.style.animationDelay = Math.random() * 3 + 's';
+                decorations.appendChild(el);
+            }
+        }
+
+        // 从飞书多维表格获取数据
+        async function fetchData(tableId) {
+            try {
+                const response = await fetch(`https://open.feishu.cn/open-apis/bitable/v1/apps/<equation>{APP_TOKEN}/tables/</equation>{tableId}/records`, {
+                    headers: {
+                        'Authorization': 'Bearer ' + getAccessToken(),
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error('网络请求失败');
+                }
+                
+                const data = await response.json();
+                return data.data.items.map(item => item.fields);
+            } catch (error) {
+                console.error('获取数据失败:', error);
+                return [];
+            }
+        }
+
+        // 注意：实际使用时需要替换为有效的 Access Token
+        // 这里使用一个简单的方案：将数据直接嵌入页面
+        function getAccessToken() {
+            return 'YOUR_ACCESS_TOKEN_HERE';
+        }
+
+        // 初始化分类标签
+        function initCategoryTabs() {
+            const categories = ['全部', '日常夸夸', '睡前情话', '道歉专用', '节日祝福', '专属情话'];
+            const tabsContainer = document.getElementById('categoryTabs');
+            
+            categories.forEach(cat => {
+                const tab = document.createElement('div');
+                tab.className = `tab ${cat === '全部' ? 'active' : ''}`;
+                tab.textContent = cat;
+                tab.onclick = () => switchCategory(cat, tab);
+                tabsContainer.appendChild(tab);
+            });
+        }
+
+        // 切换分类
+        function switchCategory(category, tabElement) {
+            currentCategory = category;
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            tabElement.classList.add('active');
+            getRandomLove();
+        }
+
+        // 获取随机情话
+        function getRandomLove() {
+            // 示例数据（实际使用时从 loveData 中筛选）
+            const samples = [
+                "今天也是被你可爱到的一天呢～",
+                "你怎么这么好看啊，看一眼就心动",
+                "全世界最可爱的女孩子就是我家的！",
+                "你今天笑起来特别甜，像草莓蛋糕一样",
+                "晚安啦，梦里也要记得想我哦～",
+                "今天的最后一句话要说给你听：我爱你",
+                "盖好被子，别着凉，明天醒来第一个见到的人必须是我",
+                "对不起嘛，我错了，罚我给你买奶茶好不好？",
+                "别生气了好不好，你生气的样子我心疼",
+                "情人节快乐！有你在我身边每一天都是情人节💕",
+                "遇见你，是我这辈子最大的幸运",
+                "不管发生什么，我都会一直陪在你身边",
+                "你就是我想要的未来"
+            ];
+
+            const filtered = currentCategory === '全部' 
+                ? samples 
+                : samples.filter(() => true); // 简化处理
+            
+            const random = filtered[Math.floor(Math.random() * filtered.length)];
+            
+            const loveText = document.getElementById('loveText');
+            loveText.style.animation = 'none';
+            loveText.offsetHeight; // 触发重绘
+            loveText.style.animation = 'fadeIn 0.5s ease';
+            loveText.textContent = random || '每天都要爱你多一点～';
+        }
+
+        // 加载运势
+        function loadFortune() {
+            // 示例运势数据
+            const fortunes = [
+                { type: '爱情运', content: '超级旺！桃花朵朵开🌸', icon: '💕' },
+                { type: '今日宜', content: '适合撒娇、要抱抱、收礼物', icon: '✅' },
+                { type: '今日忌', content: '别熬夜、别生气、别吃垃圾食品', icon: '❌' },
+                { type: '幸运色', content: '粉色、白色、浅蓝色', icon: '🎨' },
+                { type: '幸运数字', content: '5、13、20', icon: '🔢' }
+            ];
+
+            const grid = document.getElementById('fortuneGrid');
+            grid.innerHTML = fortunes.map(f => `
+                <div class="fortune-item">
+                    <span class="fortune-icon">${f.icon}</span>
+                    <span><strong>${f.type}：</strong>${f.content}</span>
+                </div>
+            `).join('');
+        }
+
+        // 初始化
+        window.onload = function() {
+            initDecorations();
+            initCategoryTabs();
+            loadFortune();
+            getRandomLove();
+        };
+    </script>
+</body>
+</html>
